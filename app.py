@@ -14,7 +14,7 @@ st.set_page_config(
 
 # Title and description in main area
 st.markdown("""
-    # <img src="data:image/png;base64,{}" width="50" style="vertical-align: -12px;"> Gemma-3 OCR
+    # <img src="data:image/png;base64,{}" width="50" height="50" style="vertical-align: -12px; border-radius: 12px;"> Gemma-3 OCR
 """.format(base64.b64encode(open("./assets/gemma3.png", "rb").read()).decode()), unsafe_allow_html=True)
 
 # Add clear button to top right
@@ -42,7 +42,7 @@ with st.sidebar:
             with st.spinner("Processing image..."):
                 try:
                     response = ollama.chat(
-                        model='gemma3:12b',
+                        model='gemma3:12b', # use gemma3:4b to run on CPU
                         messages=[{
                             'role': 'user',
                             'content': """Analyze the text in the provided image. Extract all readable content
